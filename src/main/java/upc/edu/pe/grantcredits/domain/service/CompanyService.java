@@ -7,7 +7,7 @@ import upc.edu.pe.grantcredits.domain.model.Company;
 
 public interface CompanyService {
     Page<Company> getAllCompanies(Pageable pageable);
-    Company getCompaniesById(Long companyId);
+    Company getCompanyById(Long companyId);
     Company createCompany(Company company);
     Company updateCompany(Long companyId, Company companyRequest);
     ResponseEntity<?> deleteCompany(Long companyId);

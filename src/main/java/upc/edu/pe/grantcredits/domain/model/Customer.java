@@ -1,7 +1,6 @@
 package upc.edu.pe.grantcredits.domain.model;
 
-import com.sun.istack.internal.NotNull;
-
+import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,7 +16,7 @@ public class Customer extends AuditModel {
     private String name;
 
     @NotNull
-    private String lastname;
+    private String lastName;
 
     @NotNull
     private Date date_of_birthday;
@@ -48,12 +47,12 @@ public class Customer extends AuditModel {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getDate_of_birthday() {
