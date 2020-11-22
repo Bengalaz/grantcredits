@@ -1,9 +1,8 @@
 package upc.edu.pe.grantcredits.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -31,39 +30,44 @@ public class Company extends AuditModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public Company setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public Company setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password){
+    public Company setPassword(String password){
         this.password = password;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Company setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
+    public Company setPhoneNumber(String phonenumber) {
         this.phonenumber = phonenumber;
+        return this;
     }
 }

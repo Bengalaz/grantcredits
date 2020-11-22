@@ -35,56 +35,63 @@ public class Customer extends AuditModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public Customer setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Customer setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public Customer setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public Date getDate_of_birthday() {
         return date_of_birthday;
     }
 
-    public void setDate_of_birthday(Date date_of_birthday) {
+    public Customer setDate_of_birthday(Date date_of_birthday) {
         this.date_of_birthday = date_of_birthday;
+        return this;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public Customer setGender(String gender) {
         this.gender = gender;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public Customer setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public Customer setDni(String dni) {
         this.dni = dni;
+        return this;
     }
 
 

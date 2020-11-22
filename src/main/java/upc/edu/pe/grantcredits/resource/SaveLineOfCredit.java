@@ -1,6 +1,6 @@
 package upc.edu.pe.grantcredits.resource;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 
 public class SaveLineOfCredit {
     @NotNull
