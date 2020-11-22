@@ -1,7 +1,6 @@
 package upc.edu.pe.grantcredits.domain.model;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.xml.internal.ws.spi.db.DatabindingException;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
 package upc.edu.pe.grantcredits.domain.model;
 
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 
