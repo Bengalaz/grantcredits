@@ -3,8 +3,9 @@ package upc.edu.pe.grantcredits.domain.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import upc.edu.pe.grantcredits.domain.model.ReportDetail;
 
-public interface ReportDetail {
+public interface ReportDetailService {
     Page<ReportDetail> getAllReportsDetails(Pageable pageable);
     ReportDetail getReportDetailById(Long reportdetailId);
     ReportDetail createReportDetail(ReportDetail reportDetail);

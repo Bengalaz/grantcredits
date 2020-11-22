@@ -47,7 +47,7 @@ public class Company extends AuditModel {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password){
         this.password = password;
     }
 

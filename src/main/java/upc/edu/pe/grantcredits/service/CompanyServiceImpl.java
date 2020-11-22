@@ -42,7 +42,7 @@ public class CompanyServiceImpl implements CompanyService {
                 company.setUsername(companyRequest.getUsername())
                         .setPassword(companyRequest.getPassword())
                         .setEmail(companyRequest.getEmail())
-                .setPhoneNumber(companyRequest.getPhonenumber()));
+                        .setPhoneNumber(companyRequest.getPhonenumber()));
     }
 
     @Override
@@ -53,5 +53,4 @@ public class CompanyServiceImpl implements CompanyService {
         companyRepository.delete(company);
         return ResponseEntity.ok().build();
     }
-
 }
