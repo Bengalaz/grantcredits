@@ -23,24 +23,27 @@ public class ReportDetail extends AuditModel {
         return id;
     }
 
-    public void setId(Long id) {
+    public ReportDetail setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Date getExpires_at() {
         return expires_at;
     }
 
-    public void setExpires_at(Date expires_at) {
+    public ReportDetail setExpires_at(Date expires_at) {
         this.expires_at = expires_at;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public ReportDetail setDescription(String description) {
         this.description = description;
+        return this;
     }
 
 }

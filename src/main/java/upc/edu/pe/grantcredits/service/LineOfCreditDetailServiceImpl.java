@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import upc.edu.pe.grantcredits.domain.model.LineOfCredit;
 import upc.edu.pe.grantcredits.domain.model.LineOfCreditDetail;
 import upc.edu.pe.grantcredits.domain.repository.LineOfCreditDetailRepository;
 import upc.edu.pe.grantcredits.domain.service.LineOfCreditDetailService;
@@ -35,7 +36,12 @@ public class LineOfCreditDetailServiceImpl implements LineOfCreditDetailService 
 
     @Override
     public LineOfCreditDetail updateLineOfCreditDetail(Long lineofcreditdetailId, LineOfCreditDetail lineofcreditdetailRequest) {
-        return null;
+        LineOfCreditDetail lineOfCreditDetail = lineOfCreditDetailRepository.findById(lineofcreditdetailId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "LineOfCreditDetail", "Id", lineofcreditdetailId));
+        return lineOfCreditDetailRepository.save(
+                lineOfCreditDetail.setExpires_at(lineofcreditdetailRequest.getExpires_at())
+                        .setDescription(lineofcreditdetailRequest.getDescription()));
     }
 
     @Override
