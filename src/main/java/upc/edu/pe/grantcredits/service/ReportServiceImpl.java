@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import upc.edu.pe.grantcredits.domain.model.LineOfCreditDetail;
 import upc.edu.pe.grantcredits.domain.model.Report;
+import upc.edu.pe.grantcredits.domain.repository.CompanyRepository;
 import upc.edu.pe.grantcredits.domain.repository.ReportRepository;
 import upc.edu.pe.grantcredits.domain.service.ReportService;
 import upc.edu.pe.grantcredits.exception.ResourceNotFoundException;
@@ -16,6 +17,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Autowired
     private ReportRepository reportRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @Override
     public Page<Report> getAllReports(Pageable pageable) {
@@ -30,8 +34,11 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public Report createReport(Report report) {
-        return reportRepository.save(report);
+    public Report createReport(Long companyId, Report report) {
+        return companyRepository.findById(companyId).map(company -> {
+            report.setCompany(company);
+            return reportRepository.save(report);
+        }).orElseThrow(() -> new ResourceNotFoundException("Company","Id", companyId));
     }
 
     @Override

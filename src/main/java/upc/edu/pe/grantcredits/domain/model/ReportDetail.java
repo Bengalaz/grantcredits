@@ -19,6 +19,10 @@ public class ReportDetail extends AuditModel {
     @NotNull
     private String description;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "report_id", referencedColumnName = "id")
+    private Report report;
+
     public Long getId() {
         return id;
     }
@@ -43,6 +47,15 @@ public class ReportDetail extends AuditModel {
 
     public ReportDetail setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public ReportDetail setReport(Report report) {
+        this.report = report;
         return this;
     }
 

@@ -22,10 +22,10 @@ public class LineOfCreditServiceImpl implements LineOfCreditService {
     }
 
     @Override
-    public LineOfCredit getLineOfCreditById(Long lineofcreditId) {
-        return lineOfCreditRepository.findById(lineofcreditId)
+    public LineOfCredit getLineOfCreditById(Long lineOfCreditId) {
+        return lineOfCreditRepository.findById(lineOfCreditId)
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "LineOfCredit", "Id", lineofcreditId));
+                        "LineOfCredit", "Id", lineOfCreditId));
     }
 
     @Override

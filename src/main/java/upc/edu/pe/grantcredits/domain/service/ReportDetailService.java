@@ -8,7 +8,7 @@ import upc.edu.pe.grantcredits.domain.model.ReportDetail;
 public interface ReportDetailService {
     Page<ReportDetail> getAllReportsDetails(Pageable pageable);
     ReportDetail getReportDetailById(Long reportdetailId);
-    ReportDetail createReportDetail(ReportDetail reportDetail);
+    ReportDetail createReportDetail(Long reportId, ReportDetail reportDetail);
     ReportDetail updateReportDetail(Long reportDetailId, ReportDetail reportDetailRequest);
     ResponseEntity<?> deleteReportDetail(Long reportDetailId);
 }

@@ -67,5 +67,12 @@ public class Report extends AuditModel {
         return this;
     }
 
+    public Company getCompany() {
+        return company;
+    }
 
+    public Report setCompany(Company company) {
+        this.company = company;
+        return this;
+    }
 }

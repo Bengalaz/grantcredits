@@ -41,11 +41,11 @@ public class ReportDetailController {
         return convertToResource(reportDetailService.getReportDetailById(reportdetailId));
     }
 
-    @PostMapping("/reportdetails")
-    public ReportDetailResource createCompany(
+    @PostMapping("/reports/{reportId}/reportdetails")
+    public ReportDetailResource createCompany(@PathVariable(value = "reportId") Long reportId,
             @Valid @RequestBody SaveReportDetailResource resource){
         ReportDetail reportDetail = convertToEntity(resource);
-        return convertToResource(reportDetailService.createReportDetail(reportDetail));
+        return convertToResource(reportDetailService.createReportDetail(reportId, reportDetail));
     }
 
     @PutMapping("/reportdetails/{reportdetailId}")

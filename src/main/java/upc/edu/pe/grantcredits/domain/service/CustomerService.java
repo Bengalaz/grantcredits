@@ -8,7 +8,7 @@ import upc.edu.pe.grantcredits.domain.model.Customer;
 public interface CustomerService {
     Page<Customer> getAllCustomers(Pageable pageable);
     Customer getCustomerById(Long customerId);
-    Customer createCustomer(Customer customer);
+    Customer createCustomer(Long companyId, Customer customer);
     Customer updateCustomer(Long companyId, Customer customerRequest);
     ResponseEntity<?> deleteCustomer(Long custumerId);
 }

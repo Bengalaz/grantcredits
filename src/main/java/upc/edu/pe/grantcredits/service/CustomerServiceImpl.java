@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import upc.edu.pe.grantcredits.domain.model.Customer;
+import upc.edu.pe.grantcredits.domain.repository.CompanyRepository;
 import upc.edu.pe.grantcredits.domain.repository.CustomerRepository;
 import upc.edu.pe.grantcredits.domain.service.CustomerService;
 import upc.edu.pe.grantcredits.exception.ResourceNotFoundException;
@@ -14,6 +15,9 @@ import upc.edu.pe.grantcredits.exception.ResourceNotFoundException;
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @Override
     public Page<Customer> getAllCustomers(Pageable pageable)
@@ -30,7 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer createCustomer(Customer customer) { return customerRepository.save(customer); }
+    public Customer createCustomer(Long companyId, Customer customer) {
+        return companyRepository.findById(companyId).map(company -> {
+            customer.setCompany(company);
+            return customerRepository.save(customer);
+        }).orElseThrow(() -> new ResourceNotFoundException("Company","Id", companyId));
+    }
 
     @Override
     public Customer updateCustomer(Long customerId, Customer customerRequest) {

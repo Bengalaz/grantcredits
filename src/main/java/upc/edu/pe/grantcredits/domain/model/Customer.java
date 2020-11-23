@@ -104,6 +104,14 @@ public class Customer extends AuditModel {
         return this;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
+    public Customer setCompany(Company company) {
+        this.company = company;
+        return this;
+    }
 
 
 }

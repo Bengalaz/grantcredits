@@ -36,7 +36,7 @@ public class LineOfCreditController {
     }
 
     @GetMapping("/lineOfCredits/{lineOfCreditId}")
-    public LineOfCreditResource getLineOfCreditById(@PathVariable(value = "lineofcreditId") Long lineOfCreditId) {
+    public LineOfCreditResource getLineOfCreditById(@PathVariable(value = "lineOfCreditId") Long lineOfCreditId) {
         return convertToResource(lineOfCreditService.getLineOfCreditById(lineOfCreditId));
     }
 
@@ -61,6 +61,7 @@ public class LineOfCreditController {
     }
 
     private LineOfCredit convertToEntity(SaveLineOfCredit resource) {
+
         return mapper.map(resource, LineOfCredit.class);
     }
 

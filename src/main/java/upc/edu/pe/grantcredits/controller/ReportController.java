@@ -28,7 +28,7 @@ public class ReportController {
     @Autowired
     private ModelMapper mapper;
 
-    @GetMapping("/reporties")
+    @GetMapping("/reports")
     public Page<ReportResource> getAllReports(Pageable pageable){
         Page<Report> reportsPage = reportService.getAllReports(pageable);
         List<ReportResource> resources = reportsPage.getContent()
@@ -37,19 +37,19 @@ public class ReportController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/reporties/{reportId}")
+    @GetMapping("/reports/{reportId}")
     public ReportResource getCompanyById(@PathVariable(value = "reportId") Long reportId){
         return convertToResource(reportService.getReportById(reportId));
     }
 
-    @PostMapping("/reporties")
-    public ReportResource createReport(
+    @PostMapping("/companies/{companyId}/reports")
+    public ReportResource createReport( @PathVariable(value = "companyId") Long companyId,
             @Valid @RequestBody SaveReportResource resource){
         Report report = convertToEntity(resource);
-        return convertToResource(reportService.createReport(report));
+        return convertToResource(reportService.createReport(companyId, report));
     }
 
-    @PutMapping("/reporties/{reportId}")
+    @PutMapping("/reports/{reportId}")
     public ReportResource updateReport(@PathVariable Long reportId,
                                          @Valid @RequestBody SaveReportResource resource){
         Report report = convertToEntity(resource);
@@ -57,7 +57,7 @@ public class ReportController {
                 reportService.updateReport(reportId,report));
     }
 
-    @DeleteMapping("/reporties/{reportId}")
+    @DeleteMapping("/reports/{reportId}")
     public ResponseEntity<?> deleteReport(@PathVariable Long reportId){return reportService.deleteReport(reportId);}
 
 
