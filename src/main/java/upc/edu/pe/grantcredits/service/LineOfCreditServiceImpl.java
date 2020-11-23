@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import upc.edu.pe.grantcredits.domain.model.LineOfCredit;
+import upc.edu.pe.grantcredits.domain.repository.CustomerRepository;
 import upc.edu.pe.grantcredits.domain.repository.LineOfCreditRepository;
 import upc.edu.pe.grantcredits.domain.service.LineOfCreditService;
 import upc.edu.pe.grantcredits.exception.ResourceNotFoundException;
@@ -15,6 +16,9 @@ public class LineOfCreditServiceImpl implements LineOfCreditService {
 
     @Autowired
     private LineOfCreditRepository lineOfCreditRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Override
     public Page<LineOfCredit> getAllLinesOfCredits(Pageable pageable) {
@@ -29,8 +33,11 @@ public class LineOfCreditServiceImpl implements LineOfCreditService {
     }
 
     @Override
-    public LineOfCredit createLineOfCredit(LineOfCredit lineOfCredit) {
-        return lineOfCreditRepository.save(lineOfCredit);
+    public LineOfCredit createLineOfCredit(Long customerId, LineOfCredit lineOfCredit) {
+        return customerRepository.findById(customerId).map(customer -> {
+            lineOfCredit.setCustomer(customer);
+            return lineOfCreditRepository.save(lineOfCredit);
+        }).orElseThrow(() -> new ResourceNotFoundException("Customer","Id", customerId));
     }
 
     @Override

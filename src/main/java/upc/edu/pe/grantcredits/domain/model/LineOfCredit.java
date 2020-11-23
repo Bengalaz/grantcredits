@@ -1,8 +1,12 @@
 package upc.edu.pe.grantcredits.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.sound.sampled.Line;
 
 @Entity
 @Table(name = "lines_of_credits")
@@ -32,6 +36,12 @@ public class LineOfCredit extends AuditModel {
 
     @NotNull
     private String delivery_time;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Customer customer;
 
     public Long getId() {
         return id;
@@ -105,5 +115,14 @@ public class LineOfCredit extends AuditModel {
         return this;
     }
 
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public LineOfCredit setCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
 
 }

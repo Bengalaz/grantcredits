@@ -8,7 +8,7 @@ import upc.edu.pe.grantcredits.domain.model.LineOfCreditDetail;
 public interface LineOfCreditDetailService {
     Page<LineOfCreditDetail> getAllLineOfCreditDetails(Pageable pageable);
     LineOfCreditDetail getLineOfCreditDetailById(Long lineofcreditdetailId);
-    LineOfCreditDetail createLineOfCreditDetail(LineOfCreditDetail lineofcreditdetail);
+    LineOfCreditDetail createLineOfCreditDetail(Long lineOfCreditId, LineOfCreditDetail lineofcreditdetail);
     LineOfCreditDetail updateLineOfCreditDetail(Long lineofcreditdetailId, LineOfCreditDetail lineofcreditdetailRequest);
     ResponseEntity<?> deleteLineOfCreditDetail(Long lineofcreditdetailId);
 }

@@ -1,6 +1,9 @@
 package upc.edu.pe.grantcredits.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +21,12 @@ public class LineOfCreditDetail extends AuditModel {
 
     @NotNull
     private String description;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lineOfCredit_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private LineOfCredit lineOfCredit;
 
     public Long getId() {
         return id;
@@ -43,6 +52,15 @@ public class LineOfCreditDetail extends AuditModel {
 
     public LineOfCreditDetail setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public LineOfCredit getLineOfCredit() {
+        return lineOfCredit;
+    }
+
+    public LineOfCreditDetail setLineOfCredit(LineOfCredit lineOfCredit) {
+        this.lineOfCredit = lineOfCredit;
         return this;
     }
 }

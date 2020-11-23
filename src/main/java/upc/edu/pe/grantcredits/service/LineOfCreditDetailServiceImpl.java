@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import upc.edu.pe.grantcredits.domain.model.LineOfCredit;
 import upc.edu.pe.grantcredits.domain.model.LineOfCreditDetail;
 import upc.edu.pe.grantcredits.domain.repository.LineOfCreditDetailRepository;
+import upc.edu.pe.grantcredits.domain.repository.LineOfCreditRepository;
 import upc.edu.pe.grantcredits.domain.service.LineOfCreditDetailService;
 import upc.edu.pe.grantcredits.exception.ResourceNotFoundException;
 
@@ -17,6 +18,8 @@ public class LineOfCreditDetailServiceImpl implements LineOfCreditDetailService 
     @Autowired
     private LineOfCreditDetailRepository lineOfCreditDetailRepository;
 
+    @Autowired
+    private LineOfCreditRepository lineOfCreditRepository;
     @Override
     public Page<LineOfCreditDetail> getAllLineOfCreditDetails(Pageable pageable) {
         return lineOfCreditDetailRepository.findAll(pageable);
@@ -30,8 +33,12 @@ public class LineOfCreditDetailServiceImpl implements LineOfCreditDetailService 
     }
 
     @Override
-    public LineOfCreditDetail createLineOfCreditDetail(LineOfCreditDetail lineofcreditdetail) {
-        return lineOfCreditDetailRepository.save(lineofcreditdetail);
+    public LineOfCreditDetail createLineOfCreditDetail(Long lineOfCreditId,
+        LineOfCreditDetail lineOfCreditDetail){
+        return lineOfCreditRepository.findById(lineOfCreditId).map(lineOfCredit -> {
+        lineOfCreditDetail.setLineOfCredit(lineOfCredit);
+        return lineOfCreditDetailRepository.save(lineOfCreditDetail);
+    }).orElseThrow(() -> new ResourceNotFoundException("LineOfCredit","Id", lineOfCreditId));
     }
 
     @Override

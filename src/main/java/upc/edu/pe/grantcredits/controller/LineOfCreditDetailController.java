@@ -28,7 +28,7 @@ public class LineOfCreditDetailController {
     @Autowired
     private ModelMapper mapper;
 
-    @GetMapping("/lineOfCreditdetails")
+    @GetMapping("/lineOfCreditDetails")
     public Page<LineOfCreditDetailResource> getAllLineOfCreditDetail(Pageable pageable) {
         Page<LineOfCreditDetail> lineofcreditsdetailpage = lineOfCreditDetailService.getAllLineOfCreditDetails(pageable);
         List<LineOfCreditDetailResource> resources = lineofcreditsdetailpage.getContent()
@@ -37,29 +37,29 @@ public class LineOfCreditDetailController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/lineOfCreditdetails/{lineOfCreditdetailsId}")
-    public LineOfCreditDetailResource getLineOfCreditDetailById(@PathVariable(value = "lineofcreditId") Long lineOfCreditdetailsId) {
+    @GetMapping("/lineOfCreditDetails/{lineOfCreditDetailsId}")
+    public LineOfCreditDetailResource getLineOfCreditDetailById(@PathVariable(value = "lineOfCreditDetailsId") Long lineOfCreditdetailsId) {
         return convertToResource(lineOfCreditDetailService.getLineOfCreditDetailById(lineOfCreditdetailsId));
     }
 
-    @PostMapping("/lineOfCreditdetails")
-    public LineOfCreditDetailResource createLineOfCreditDetail(
+    @PostMapping("/lineOfCredits/{lineOfCreditId}/lineOfCreditDetails")
+    public LineOfCreditDetailResource createLineOfCreditDetail(  @PathVariable(value = "lineOfCreditId") Long lineOfCreditId,
             @Valid @RequestBody SaveLineOfCreditDetail resource) {
         LineOfCreditDetail lineOfCreditdetail = convertToEntity(resource);
-        return convertToResource(lineOfCreditDetailService.createLineOfCreditDetail(lineOfCreditdetail));
+        return convertToResource(lineOfCreditDetailService.createLineOfCreditDetail(lineOfCreditId, lineOfCreditdetail));
     }
 
-    @PutMapping("/lineOfCreditdetails/{lineOfCreditdetailId}")
-    public LineOfCreditDetailResource updateLineOfCreditDetail(@PathVariable Long lineOfCreditdetailId,
+    @PutMapping("/lineOfCreditDetails/{lineOfCreditDetailsId}")
+    public LineOfCreditDetailResource updateLineOfCreditDetail(@PathVariable Long lineOfCreditDetailsId,
                                                    @Valid @RequestBody SaveLineOfCreditDetail resource) {
         LineOfCreditDetail lineOfCreditdetail = convertToEntity(resource);
         return convertToResource(
-                lineOfCreditDetailService.updateLineOfCreditDetail(lineOfCreditdetailId, lineOfCreditdetail));
+                lineOfCreditDetailService.updateLineOfCreditDetail(lineOfCreditDetailsId, lineOfCreditdetail));
     }
 
-    @DeleteMapping("/lineOfCreditdetails/{lineOfCreditdetailId}")
-    public ResponseEntity<?> deleteLineOfCreditDetail(@PathVariable Long lineOfCreditdetailId) {
-        return lineOfCreditDetailService.deleteLineOfCreditDetail(lineOfCreditdetailId);
+    @DeleteMapping("/lineOfCreditDetails/{lineOfCreditDetailsId}")
+    public ResponseEntity<?> deleteLineOfCreditDetail(@PathVariable Long lineOfCreditDetailsId) {
+        return lineOfCreditDetailService.deleteLineOfCreditDetail(lineOfCreditDetailsId);
     }
 
 

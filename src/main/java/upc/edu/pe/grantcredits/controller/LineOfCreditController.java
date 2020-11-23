@@ -40,11 +40,11 @@ public class LineOfCreditController {
         return convertToResource(lineOfCreditService.getLineOfCreditById(lineOfCreditId));
     }
 
-    @PostMapping("/lineOfCredits")
-    public LineOfCreditResource createLineOfCredit(
+    @PostMapping("/customers/{customerId}/lineOfCredits")
+    public LineOfCreditResource createLineOfCredit( @PathVariable(value = "customerId") Long customerId,
             @Valid @RequestBody SaveLineOfCredit resource) {
         LineOfCredit lineOfCredit = convertToEntity(resource);
-        return convertToResource(lineOfCreditService.createLineOfCredit(lineOfCredit));
+        return convertToResource(lineOfCreditService.createLineOfCredit(customerId, lineOfCredit));
     }
 
     @PutMapping("/lineOfCredits/{lineOfCreditId}")
