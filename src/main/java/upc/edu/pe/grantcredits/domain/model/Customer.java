@@ -1,6 +1,10 @@
 package upc.edu.pe.grantcredits.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -30,6 +34,12 @@ public class Customer extends AuditModel {
     @NotNull
     @Column(unique = true)
     private String dni;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "company_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Company company;
 
     public Long getId() {
         return id;

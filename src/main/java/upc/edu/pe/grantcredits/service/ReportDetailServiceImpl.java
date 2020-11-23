@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import upc.edu.pe.grantcredits.domain.model.Report;
 import upc.edu.pe.grantcredits.domain.model.ReportDetail;
 import upc.edu.pe.grantcredits.domain.repository.ReportDetailRepository;
 import upc.edu.pe.grantcredits.domain.service.ReportDetailService;
@@ -35,7 +36,13 @@ public class ReportDetailServiceImpl implements ReportDetailService {
 
     @Override
     public ReportDetail updateReportDetail(Long reportDetailId, ReportDetail reportDetailRequest) {
-        return null;
+
+        ReportDetail reportDetail = reportDetailRepository.findById(reportDetailId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "ReportDetail", "Id", reportDetailId));
+        return reportDetailRepository.save(
+                reportDetail.setExpires_at(reportDetailRequest.getExpires_at())
+                        .setDescription(reportDetailRequest.getDescription()));
     }
 
     @Override
