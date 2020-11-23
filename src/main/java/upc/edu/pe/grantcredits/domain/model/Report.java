@@ -1,6 +1,9 @@
 package upc.edu.pe.grantcredits.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
@@ -21,6 +24,12 @@ public class Report extends AuditModel {
 
     @NotNull
     private Integer time;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "company_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Company company;
 
     public Long getId() {
         return id;
